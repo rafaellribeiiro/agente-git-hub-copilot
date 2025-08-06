@@ -4,15 +4,15 @@ Este documento descreve, em alto nível, as etapas e componentes necessários pa
 
 ---
 
-## 1. Configuração Inicial do Projeto
+## Prompt 1: Configuração Inicial do Projeto
 
-- Definir projeto Maven ou Gradle com suporte a Java 21.
+- Definir projeto Maven ou Gradle com suporte a Java 17.
 - Incluir dependências principais: Spring Web, Spring Data JPA, H2 e Lombok.
 - Configurar o plugin do Spring Boot para empacotamento e execução.
 
 ---
 
-## 2. Estrutura de Pacotes
+## Prompt 2: Estrutura de Pacotes
 
 1. **config**: arquivos de configuração geral (por exemplo, CORS, segurança básica).
 2. **entity**: classes que representam tabelas do banco com anotações JPA.
@@ -25,7 +25,7 @@ Este documento descreve, em alto nível, as etapas e componentes necessários pa
 
 ---
 
-## 3. Configurações do Banco H2
+## Prompt 3: Configurações do Banco H2
 
 - Definir URL de conexão em memória, nome de usuário e senha padrão.
 - Habilitar console web do H2 em uma rota específica.
@@ -34,7 +34,7 @@ Este documento descreve, em alto nível, as etapas e componentes necessários pa
 
 ---
 
-## 4. Modelagem de Domínio e Relacionamentos
+## Prompt 4: Modelagem de Domínio e Relacionamentos
 
 1. **Autor** (Author): entidade com atributos básicos (nome, nacionalidade) e relacionamento de um-para-muitos com Livros.
 2. **Categoria** (Category): entidade com nome e lista de Livros associada.
@@ -42,44 +42,56 @@ Este documento descreve, em alto nível, as etapas e componentes necessários pa
 
 ---
 
-## 5. Repositórios e Serviços
+## Prompt 5: Repositórios e Serviços
 
 - **Repositórios**: interfaces específicas para cada entidade (Author, Category, Book) aproveitando `JpaRepository`.
 - **Serviços**: implementar operações CRUD genéricas (listar, buscar por ID, criar, atualizar, excluir) para cada entidade, utilizando injeção de repositório e tratamento de exceções quando não encontrado.
 
 ---
 
-## 6. Controladores REST
+## Prompt 6: Controladores REST
 
 - Criar controladores para cada entidade, expor rotas REST:
-  - `GET /api/{entidade}`: listar todos
-  - `GET /api/{entidade}/{id}`: buscar por ID
-  - `POST /api/{entidade}`: criar novo registro
-  - `PUT /api/{entidade}/{id}`: atualizar registro
-  - `DELETE /api/{entidade}/{id}`: remover registro
+    - `GET /api/{entidade}`: listar todos
+    - `GET /api/{entidade}/{id}`: buscar por ID
+    - `POST /api/{entidade}`: criar novo registro
+    - `PUT /api/{entidade}/{id}`: atualizar registro
+    - `DELETE /api/{entidade}/{id}`: remover registro
 - Mapear requisições e respostas no formato JSON.
 
 ---
 
-## 7. Data Loader (Inicialização de Dados)
+## Prompt 7: Documentação com Swagger e OpenAPI
 
-- Implementar um `CommandLineRunner` ou componente equivalente para:
-  - Criar instâncias de Autores e Categorias.
-  - Criar instâncias de Livros associadas aos Autores e Categorias.
-  - Salvar todas as entidades no banco H2 assim que a aplicação inicia.
+- Incluir dependências do Swagger/OpenAPI (springdoc-openapi).
+- Criar uma classe de configuração para documentação (se necessário).
+- Adicionar anotações nos controladores:
+    - `@Tag` para descrever o agrupamento.
+    - `@Operation` para descrever cada endpoint.
+    - `@ApiResponse` para descrever os possíveis retornos.
+- Acessar a documentação gerada em `/swagger-ui.html` ou `/swagger-ui/index.html` após a execução da aplicação.
 
 ---
 
-## 8. Testes e Verificação
+## Prompt 8: Data Loader (Inicialização de Dados)
+
+- Implementar um `CommandLineRunner` ou componente equivalente para:
+    - Criar instâncias de Autores e Categorias.
+    - Criar instâncias de Livros associadas aos Autores e Categorias.
+    - Salvar todas as entidades no banco H2 assim que a aplicação inicia.
+
+---
+
+## Prompt 9: Testes e Verificação
 
 - Validar a inicialização automática de dados no console do H2.
 - Testar endpoints via ferramentas como Postman ou curl:
-  - Verificar operações CRUD para Autor, Categoria e Livro.
+    - Verificar operações CRUD para Autor, Categoria e Livro.
 - Confirmar a persistência em memória e o comportamento de criação e remoção de esquema.
 
 ---
 
-## 9. Observações Finais
+## Prompt 10: Observações Finais
 
 - Este guia serve de roteirização para a geração automática de código. Não contém trechos de código, apenas orientações de alto nível.
 - O agente deve interpretar cada etapa e produzir as classes, configurações e componentes correspondentes.
