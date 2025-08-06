@@ -1,6 +1,6 @@
 # Guia para Gerar uma API REST de Biblioteca (Livraria)
 
-Este documento descreve, em alto nível, as etapas e componentes necessários para que o agente gere o código-fonte de uma API REST de livraria usando Spring Boot com Java 21, Lombok e banco de dados H2 em memória.
+Este documento descreve, em alto nível, as etapas e componentes necessários para que o agente gere o código-fonte de uma API REST de livraria usando Spring Boot com Java 17, Lombok e banco de dados H2 em memória.
 
 ---
 
